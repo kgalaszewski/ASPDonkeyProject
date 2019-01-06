@@ -24,5 +24,7 @@ namespace ASPDonkeysProject.Data
         }
 
         public DbSet<ASPDonkeysProject.Models.Donkey> Donkey { get; set; }
+
+        public DbSet<ASPDonkeysProject.Models.Cart> Cart { get; set; }
     }
 }
