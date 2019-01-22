@@ -18,5 +18,7 @@ namespace ASPDonkeysProject.Models
         public string Sex { get; set; }
 
         public bool IsPregnant { get; set; }
+
+        public bool IsWypozyczony { get; set; }
     }
 }

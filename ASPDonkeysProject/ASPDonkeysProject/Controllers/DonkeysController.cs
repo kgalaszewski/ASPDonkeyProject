@@ -25,6 +25,43 @@ namespace ASPDonkeysProject.Controllers
             return View(await _context.Donkey.ToListAsync());
         }
 
+        public async Task<IActionResult> Add(int? id)
+        {
+            if (User == null)
+                return NotFound();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                var donk = _context?.Donkey?.Where(x => x.Id == id).FirstOrDefault();
+                donk.IsWypozyczony = donk.IsWypozyczony ? false : true;
+                if (donk == null)
+                    return RedirectToAction(nameof(Index));
+
+                try
+                {
+                    _context.Update(donk);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DonkeyExists(donk.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: Donkeys/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -92,7 +129,7 @@ namespace ASPDonkeysProject.Controllers
             {
                 return NotFound();
             }
-
+            
             if (ModelState.IsValid)
             {
                 try

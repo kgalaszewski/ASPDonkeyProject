@@ -11,9 +11,10 @@ using System;
 namespace ASPDonkeysProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190122202158_doupa")]
+    partial class doupa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,8 +94,6 @@ namespace ASPDonkeysProject.Data.Migrations
                     b.Property<int?>("CartId");
 
                     b.Property<bool>("IsPregnant");
-
-                    b.Property<bool>("IsWypozyczony");
 
                     b.Property<string>("Name");
 
